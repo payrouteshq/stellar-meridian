@@ -1,65 +1,196 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Code2, Shield, Package, Bot } from "lucide-react";
+
+function LogoMark({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 200 200"
+      className={className}
+      aria-hidden="true"
+    >
+      <line
+        x1="100"
+        y1="20"
+        x2="100"
+        y2="180"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="square"
+      />
+      <path
+        d="M 100,30 A 70,70 0 0,0 100,170 A 45,70 0 0,1 100,30 Z"
+        fill="currentColor"
+      />
+      <path
+        d="M 100,30 A 70,70 0 0,1 100,170"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="square"
+      />
+    </svg>
+  );
+}
+
+const primitives = [
+  {
+    icon: Code2,
+    name: "TypeScript SDK",
+    label: "@meridian/stellar-core",
+    description:
+      "issueAsset(), approveHolder(), freezeHolder(), clawbackTokens(), distributeTokens() — the full regulated asset lifecycle in clean TypeScript primitives",
+  },
+  {
+    icon: Shield,
+    name: "Soroban Contracts",
+    label: "transfer restriction + distribution",
+    description:
+      "allowlist enforcement, lockup periods and proportional distributions — compiled Rust contracts ready to deploy on Stellar mainnet",
+  },
+  {
+    icon: Package,
+    name: "shadcn Registry",
+    label: "npx shadcn add @meridian/...",
+    description:
+      "install asset management components the same way you install any UI component. you own the code permanently. no vendor lock-in.",
+  },
+  {
+    icon: Bot,
+    name: "MCP Server",
+    label: "meridian-mcp",
+    description:
+      "AI agents can issue assets, approve investors and distribute returns autonomously. the first MCP server for regulated asset management on Stellar.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Nav */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-border bg-background/95 backdrop-blur-sm">
+        <div className="flex items-center gap-2.5">
+          <LogoMark className="h-5 w-auto text-foreground" />
+          <span className="text-sm font-semibold tracking-[0.2em] uppercase">
+            Meridian
+          </span>
+        </div>
+        <nav className="flex items-center gap-1.5">
+          <Button variant="ghost" size="sm" asChild>
+            <a href="#">Docs</a>
+          </Button>
+          <Button variant="outline" size="sm" asChild>
+            <a href="https://github.com/payrouteshq/stellar-meridian">GitHub</a>
+          </Button>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <section className="flex flex-col items-center text-center pt-44 pb-32 px-6">
+        <div className="max-w-2xl w-full flex flex-col items-center">
+          <LogoMark className="h-14 w-auto text-foreground mb-10" />
+
+          <p className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-5">
+            The API is the UI.
           </p>
+
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.1] mb-5">
+            The headless tokenization framework for Stellar
+          </h1>
+
+          <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-lg">
+            issue, manage and transfer regulated assets on Stellar without
+            touching a vendor UI. composable primitives. agent-ready. you own
+            the code.
+          </p>
+
+          <div className="w-full max-w-sm mb-8">
+            <div className="flex items-center gap-3 rounded-lg border border-border bg-muted px-4 py-3">
+              <span className="text-muted-foreground text-sm font-mono select-none">
+                $
+              </span>
+              <code className="text-sm font-mono text-foreground">
+                npx shadcn add @meridian/asset-issuer
+              </code>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button asChild>
+              <a href="#">Read the docs</a>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href="https://github.com/payrouteshq/stellar-meridian">
+                View on GitHub
+              </a>
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="px-6 pb-32">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-10">
+            <p className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-2">
+              Four primitives.
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Everything you need. Nothing you don&apos;t.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border rounded-xl overflow-hidden">
+            {primitives.map(({ icon: Icon, name, label, description }) => (
+              <div key={name} className="bg-background p-8 flex flex-col gap-5">
+                <Icon
+                  className="size-4 text-muted-foreground"
+                  strokeWidth={1.5}
+                />
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="text-sm font-semibold">{name}</h3>
+                  <p className="text-xs font-mono text-muted-foreground">
+                    {label}
+                  </p>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border px-6 py-10">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <div className="flex items-center gap-2.5">
+              <LogoMark className="h-5 w-auto text-foreground" />
+              <span className="text-sm font-semibold tracking-[0.2em] uppercase">
+                Meridian
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              built for the Stellar ecosystem
+            </p>
+          </div>
+          <nav className="flex items-center gap-6 text-sm text-muted-foreground">
+            <a href="#" className="hover:text-foreground transition-colors">
+              Docs
+            </a>
+            <a
+              href="https://github.com/payrouteshq/stellar-meridian"
+              className="hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              SCF
+            </a>
+          </nav>
+        </div>
+      </footer>
     </div>
   );
 }
