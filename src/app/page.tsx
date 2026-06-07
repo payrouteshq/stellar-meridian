@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Code2, Shield, Package, Bot } from "lucide-react";
+import { Code2, Shield, Package, Bot, Globe } from "lucide-react";
 
 function LogoMark({ className }: { className?: string }) {
   return (
@@ -39,14 +39,16 @@ const primitives = [
     name: "TypeScript SDK",
     label: "@meridian/stellar-core",
     description:
-      "issueAsset(), approveHolder(), freezeHolder(), clawbackTokens(), distributeTokens() — the full regulated asset lifecycle in clean TypeScript primitives",
+      "issueAsset(), approveHolder(), freezeHolder(), clawbackTokens(), distributeTokens(), the full regulated asset lifecycle in clean TypeScript primitives",
+    span: "sm:col-span-2",
   },
   {
     icon: Shield,
     name: "Soroban Contracts",
     label: "transfer restriction + distribution",
     description:
-      "allowlist enforcement, lockup periods and proportional distributions — compiled Rust contracts ready to deploy on Stellar mainnet",
+      "allowlist enforcement, lockup periods and proportional distributions, compiled Rust contracts ready to deploy on Stellar mainnet",
+    span: "sm:col-span-2",
   },
   {
     icon: Package,
@@ -54,6 +56,7 @@ const primitives = [
     label: "npx shadcn add @meridian/...",
     description:
       "install asset management components the same way you install any UI component. you own the code permanently. no vendor lock-in.",
+    span: "sm:col-span-2",
   },
   {
     icon: Bot,
@@ -61,13 +64,21 @@ const primitives = [
     label: "meridian-mcp",
     description:
       "AI agents can issue assets, approve investors and distribute returns autonomously. the first MCP server for regulated asset management on Stellar.",
+    span: "sm:col-span-3",
+  },
+  {
+    icon: Globe,
+    name: "WordPress Plugin",
+    label: "meridian for wordpress",
+    description:
+      "a reference implementation for non-technical operators. real estate syndicators, investment clubs and crowdfunding platforms on WordPress can issue tokens, manage investors and distribute returns, without writing code. same primitives. different surface.",
+    span: "sm:col-span-3",
   },
 ];
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Nav */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="flex items-center gap-2.5">
           <LogoMark className="h-5 w-auto text-foreground" />
@@ -85,7 +96,6 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero */}
       <section className="flex flex-col items-center text-center pt-44 pb-32 px-6">
         <div className="max-w-2xl w-full flex flex-col items-center">
           <LogoMark className="h-14 w-auto text-foreground mb-10" />
@@ -99,9 +109,9 @@ export default function Home() {
           </h1>
 
           <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-lg">
-            issue, manage and transfer regulated assets on Stellar without
-            touching a vendor UI. composable primitives. agent-ready. you own
-            the code.
+            composable primitives for issuing, managing and transferring
+            regulated assets on Stellar. agent-ready. headless by default. any
+            surface you want on top.
           </p>
 
           <div className="w-full max-w-sm mb-8">
@@ -139,29 +149,33 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border rounded-xl overflow-hidden">
-            {primitives.map(({ icon: Icon, name, label, description }) => (
-              <div key={name} className="bg-background p-8 flex flex-col gap-5">
-                <Icon
-                  className="size-4 text-muted-foreground"
-                  strokeWidth={1.5}
-                />
-                <div className="flex flex-col gap-1.5">
-                  <h3 className="text-sm font-semibold">{name}</h3>
-                  <p className="text-xs font-mono text-muted-foreground">
-                    {label}
+          <div className="grid grid-cols-1 sm:grid-cols-6 gap-px bg-border border border-border rounded-xl overflow-hidden">
+            {primitives.map(
+              ({ icon: Icon, name, label, description, span }) => (
+                <div
+                  key={name}
+                  className={`bg-background p-8 flex flex-col gap-5 ${span}`}
+                >
+                  <Icon
+                    className="size-4 text-muted-foreground"
+                    strokeWidth={1.5}
+                  />
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="text-sm font-semibold">{name}</h3>
+                    <p className="text-xs font-mono text-muted-foreground">
+                      {label}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {description}
                   </p>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            ))}
+              ),
+            )}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="border-t border-border px-6 py-10">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col items-center sm:items-start gap-2">
